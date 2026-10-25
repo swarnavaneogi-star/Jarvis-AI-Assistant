@@ -1,40 +1,26 @@
 from core.speech import take_command
 from core.tts import speak
 from core.wake_word import is_wake_word_detected
-
-
-def handle_command(command: str) -> None:
-    if not command:
-        speak("I didn't catch that, sir.")
-        return
-
-    if "hello" in command:
-        speak("Hello sir. How can I help you?")
-
-    elif "how are you" in command:
-        speak("I am doing great, sir.")
-
-    elif "thank you" in command:
-        speak("You're welcome, sir.")
-
-    else:
-        speak("I heard you, sir.")
+from core.brain import handle_command
 
 
 def main() -> None:
     speak("Initialising JARVIS...")
 
     while True:
-        heard = take_command()
-
-        if not is_wake_word_detected(heard):
+        if not is_wake_word_detected():
             continue
 
-        print("WAKE WORD DETECTED")
         speak("Yes sir")
 
         command = take_command()
-        handle_command(command)
+
+        if not command:
+            speak("Sorry sir, I couldn't understand you.")
+            continue
+
+        if not handle_command(command):
+            break
 
 
 if __name__ == "__main__":
