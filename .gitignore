@@ -1,0 +1,22 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment / secrets
+.env
+.env.*
+
+# Temporary audio files
+*.wav
+
+# IDE files
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
